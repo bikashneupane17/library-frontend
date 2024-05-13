@@ -1,3 +1,11 @@
 .main {
   min-height: calc(100vh - 10rem);
 }
+
+.carousel {
+  height: 60vh;
+}
+
+.carousel img {
+  height: 60vh;
+}
