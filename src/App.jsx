@@ -1,13 +1,11 @@
-import { Button } from "react-bootstrap";
-import { ToastContainer, toast } from "react-toastify";
-
-import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import { Signup } from "./pages/login-signup/Signup";
-import { Login } from "./pages/login-signup/Login";
-import { HomePage } from "./pages/home/HomePage";
-import { Product } from "./pages/product/Product";
+import { ToastContainer } from "react-toastify";
+import "./App.css";
 import { Dashboard } from "./pages/dashboard/Dashboard";
+import { HomePage } from "./pages/home/HomePage";
+import { Login } from "./pages/login-signup/Login";
+import { Signup } from "./pages/login-signup/Signup";
+import { Product } from "./pages/product/Product";
 
 function App() {
   return (

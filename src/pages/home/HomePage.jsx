@@ -8,7 +8,6 @@ export const HomePage = () => {
   return (
     <DefaultLayout>
       <CustomCarousel />
-
       {/* Book List */}
       <Container>
         <Row>
