@@ -1,16 +1,29 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { useRef, useState } from "react";
 
 import { CustomForm } from "../../components/customForm/CustomForm";
 import { DefaultLayout } from "../../components/layout/DefaultLayout";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { loginUser } from "../../axios/axiosHelper";
+import { toast } from "react-toastify";
 
 export const Login = () => {
-  const [form, setForm] = useState({});
+  const emailRef = useRef("");
+  const passRef = useRef("");
 
-  const handleOnChange = (e) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+
+    const email = emailRef.current.value;
+    const password = passRef.current.value;
+
+    if (!email || !password) {
+      return toast.error("Both field must be filled");
+    }
+
+    const user = await loginUser({ email, password });
+
+    console.log(user);
   };
 
   const inputs = [
@@ -20,6 +33,7 @@ export const Login = () => {
       type: "email",
       required: true,
       placeholder: "jon@gmail.com",
+      inputRef: emailRef,
     },
     {
       lable: "Password",
@@ -27,6 +41,7 @@ export const Login = () => {
       type: "text",
       required: true,
       placeholder: "********",
+      inputRef: passRef,
     },
   ];
 
@@ -37,22 +52,21 @@ export const Login = () => {
           <Col className="mt-5 mb-5 d-flex justify-content-center align-items-center">
             <div className="w-75 p-5 border rounded shadow-lg">
               <h2>Login Now!</h2>
-              <Form>
+              <Form onSubmit={handleOnSubmit}>
                 {inputs.map((item, i) => {
-                  return (
-                    <CustomForm key={i} {...item} onChange={handleOnChange} />
-                  );
+                  return <CustomForm key={i} {...item} />;
                 })}
 
+                {/* <input type="text" ref={emailRef}></input> */}
                 <div className="d-grid mt-3">
-                  <Button>Login</Button>
+                  <Button type="submit">Login</Button>
                 </div>
               </Form>
-              <div className="mt-2 d-flex justify-content-end ">
+              {/* <div className="mt-2 d-flex justify-content-end ">
                 <h5>
                   Already a customer? <Link to="/login">Login</Link>
                 </h5>
-              </div>
+              </div> */}
             </div>
           </Col>
         </Row>

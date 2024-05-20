@@ -2,7 +2,8 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 
 import { CustomForm } from "../../components/customForm/CustomForm";
 import { DefaultLayout } from "../../components/layout/DefaultLayout";
-import { Link } from "react-router-dom";
+import { signupUser } from "../../axios/axiosHelper";
+import { toast } from "react-toastify";
 import { useState } from "react";
 
 export const Signup = () => {
@@ -12,7 +13,7 @@ export const Signup = () => {
   const handleOnChange = (e) => {
     const { name, value } = e.target;
 
-    setError("");
+    // setError("");
 
     // if (name === "confirmPassword") {
     //   form.password !== value && setError("Password must match");
@@ -37,24 +38,28 @@ export const Signup = () => {
     setForm({ ...form, [name]: value });
   };
 
-  const handelOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
 
     const { confirmPassword, ...rest } = form;
-
-    if (rest.password === confirmPassword) {
-      try {
-        console.log("haha");
-      } catch (error) {
-        console.log(error);
-      }
+    if (rest.password !== confirmPassword) {
+      return alert("password do not match");
     }
+
+    const responsePending = signupUser(rest);
+    toast.promise(responsePending, {
+      pending: "Please Wait.....",
+    });
+
+    const { status, message } = await responsePending;
+    toast[status](message);
+    setForm({});
   };
 
   const inputs = [
     {
-      lable: "Full Name",
-      name: "fullName",
+      lable: "First Name",
+      name: "firstName",
       type: "text",
       required: true,
       placeholder: "Jon",
@@ -102,7 +107,7 @@ export const Signup = () => {
           <Col className="mt-5 mb-5 d-flex justify-content-center align-items-center">
             <div className="w-75 p-5 border rounded shadow-lg">
               <h2>Join Community!</h2>
-              <Form onSubmit={handelOnSubmit}>
+              <Form onSubmit={handleOnSubmit}>
                 {inputs.map((item, i) => {
                   return (
                     <CustomForm key={i} {...item} onChange={handleOnChange} />
@@ -110,7 +115,9 @@ export const Signup = () => {
                 })}
 
                 <div className="d-grid mt-3">
-                  <Button type="submit">Signup</Button>
+                  <Button type="submit" disabled={error}>
+                    Signup
+                  </Button>
                 </div>
               </Form>
               {error && (
@@ -120,12 +127,6 @@ export const Signup = () => {
                   </ul>
                 </div>
               )}
-
-              {/* <div className="mt-2 d-flex justify-content-end ">
-                <h5>
-                  Already a customer? <Link to="/login">Login</Link>
-                </h5>
-              </div> */}
             </div>
           </Col>
         </Row>
