@@ -32,7 +32,9 @@ export const Signup = () => {
     // }
 
     // if (name === "password" && form.confirmPassword) {
-    //   form.confirmPassword !== value && setError("Password do not match");
+    //   form.confirmPassword !== value
+    //     ? setError("Password do not match")
+    //     : setError("");
     // }
 
     setForm({ ...form, [name]: value });
@@ -43,7 +45,7 @@ export const Signup = () => {
 
     const { confirmPassword, ...rest } = form;
     if (rest.password !== confirmPassword) {
-      return alert("password do not match");
+      return toast("Password do not match");
     }
 
     const responsePending = signupUser(rest);
@@ -53,6 +55,7 @@ export const Signup = () => {
 
     const { status, message } = await responsePending;
     toast[status](message);
+
     setForm({});
   };
 

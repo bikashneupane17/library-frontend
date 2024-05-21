@@ -1,6 +1,10 @@
 import React from "react";
-import { DefaultLayout } from "../../components/layout/DefaultLayout";
+import { UserLayout } from "../../components/layout/UserLayout";
 
 export const Dashboard = () => {
-  return <DefaultLayout>Dashboard</DefaultLayout>;
+  return (
+    <UserLayout pageTitle={"Dashboard"}>
+      <h1>Main area</h1>
+    </UserLayout>
+  );
 };
