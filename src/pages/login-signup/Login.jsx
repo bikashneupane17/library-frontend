@@ -50,20 +50,18 @@ export const Login = () => {
 
   const inputs = [
     {
-      lable: "Email",
+      label: "Email",
       name: "email",
       type: "email",
       placeholder: "jon@gmail.com",
       inputRef: emailRef,
-      value: "a@gmail.com",
     },
     {
-      lable: "Password",
+      label: "Password",
       name: "password",
       type: "password",
       placeholder: "********",
       inputRef: passRef,
-      value: "11",
     },
   ];
 

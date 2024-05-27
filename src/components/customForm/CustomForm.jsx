@@ -1,10 +1,10 @@
 import { Form } from "react-bootstrap";
 
-export const CustomForm = ({ lable, inputRef, ...rest }) => {
+export const CustomForm = ({ label, inputRef, ...rest }) => {
   return (
     <>
       <Form.Group className="mb-3">
-        {lable && <Form.Label>{lable}</Form.Label>}
+        {label && <Form.Label>{label}</Form.Label>}
         <Form.Control {...rest} ref={inputRef} />
       </Form.Group>
     </>

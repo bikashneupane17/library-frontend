@@ -11,6 +11,8 @@ export const UserLayout = ({ children, pageTitle }) => {
   return (
     <AuthRoute>
       <Header />
+
+      {/* main-section */}
       <Container fluid>
         <Row>
           <Col xs={3} className="bg-dark text-light">
@@ -27,6 +29,7 @@ export const UserLayout = ({ children, pageTitle }) => {
           </Col>
         </Row>
       </Container>
+
       <Footer />
     </AuthRoute>
   );

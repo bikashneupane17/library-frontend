@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user: {},
 };
+
 //createSlice
 const userSlice = createSlice({
   name: "user",
@@ -18,5 +19,5 @@ const { reducer, actions } = userSlice;
 
 //export functions inside actions and reducer
 export const { setUser } = actions;
-
+//export reducer
 export default reducer;

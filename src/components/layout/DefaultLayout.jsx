@@ -7,6 +7,7 @@ export const DefaultLayout = ({ children }) => {
     <>
       <Header />
 
+      {/* main section */}
       <main className="main">{children}</main>
 
       <Footer />

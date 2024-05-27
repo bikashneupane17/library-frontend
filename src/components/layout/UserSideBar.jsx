@@ -21,17 +21,17 @@ const sideLinks = [
   {
     icon: <IoList />,
     title: "All Burrow",
-    to: "/admin/all-burrow",
+    to: "/admin/all-burrows",
   },
   {
     icon: <FaBook />,
     title: "My Books",
-    to: "/admin/my-books",
+    to: "/my-books",
   },
   {
     icon: <CgProfile />,
     title: "Profile",
-    to: "/admin/profiles",
+    to: "/profile",
   },
   {
     icon: <CgProfile />,
@@ -47,6 +47,7 @@ export const UserSideBar = () => {
     user.role === "admin"
       ? sideLinks.map((item) => item)
       : sideLinks.filter((item) => !item.isAdminOnly);
+
   return (
     <Stack gap={1}>
       {list.map(({ to, title, icon }, index) => (

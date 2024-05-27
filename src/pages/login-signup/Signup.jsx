@@ -4,41 +4,45 @@ import { CustomForm } from "../../components/customForm/CustomForm";
 import { DefaultLayout } from "../../components/layout/DefaultLayout";
 import { signupUser } from "../../axios/axiosHelper";
 import { toast } from "react-toastify";
+import { useForm } from "../../hooks/useForm";
 import { useState } from "react";
 
 export const Signup = () => {
-  const [form, setForm] = useState({});
+  const { handleOnChange } = useForm();
+
   const [error, setError] = useState("");
 
-  const handleOnChange = (e) => {
-    const { name, value } = e.target;
+  // const [form, setForm] = useState({});
 
-    // setError("");
+  // const handleOnChange = (e) => {
+  //   const { name, value } = e.target;
 
-    // if (name === "confirmPassword") {
-    //   form.password !== value && setError("Password must match");
-    //   form.password.length < 6 &&
-    //     setError("Password must be atleast 6 character");
+  //   // setError("");
 
-    //   !/[a-z]/.test(form.password) &&
-    //     setError("Password must have atleast 1 Lowercase");
-    //   !/[A-Z]/.test(form.password) &&
-    //     setError("Password must have atleast 1 Uppercase");
-    //   !/[0-9]/.test(form.password) &&
-    //     setError("Password must have atleast 1 Number");
+  //   // if (name === "confirmPassword") {
+  //   //   form.password !== value && setError("Password must match");
+  //   //   form.password.length < 6 &&
+  //   //     setError("Password must be atleast 6 character");
 
-    //   !/[@#$%^&*()_+!}{":?><|]/.test(form.password) &&
-    //     setError("Password must have at least 1 special character");
-    // }
+  //   //   !/[a-z]/.test(form.password) &&
+  //   //     setError("Password must have atleast 1 Lowercase");
+  //   //   !/[A-Z]/.test(form.password) &&
+  //   //     setError("Password must have atleast 1 Uppercase");
+  //   //   !/[0-9]/.test(form.password) &&
+  //   //     setError("Password must have atleast 1 Number");
 
-    // if (name === "password" && form.confirmPassword) {
-    //   form.confirmPassword !== value
-    //     ? setError("Password do not match")
-    //     : setError("");
-    // }
+  //   //   !/[@#$%^&*()_+!}{":?><|]/.test(form.password) &&
+  //   //     setError("Password must have at least 1 special character");
+  //   // }
 
-    setForm({ ...form, [name]: value });
-  };
+  //   // if (name === "password" && form.confirmPassword) {
+  //   //   form.confirmPassword !== value
+  //   //     ? setError("Password do not match")
+  //   //     : setError("");
+  //   // }
+
+  //   setForm({ ...form, [name]: value });
+  // };
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
@@ -61,41 +65,41 @@ export const Signup = () => {
 
   const inputs = [
     {
-      lable: "First Name",
+      label: "First Name",
       name: "firstName",
       type: "text",
       required: true,
       placeholder: "Jon",
     },
     {
-      lable: "Last Name",
+      label: "Last Name",
       name: "lastName",
       type: "text",
       required: true,
       placeholder: "Doe",
     },
     {
-      lable: "Phone Number",
+      label: "Phone Number",
       name: "phone",
       type: "number",
       placeholder: 55555555,
     },
     {
-      lable: "Email",
+      label: "Email",
       name: "email",
       type: "email",
       required: true,
       placeholder: "jon@gmail.com",
     },
     {
-      lable: "Password",
+      label: "Password",
       name: "password",
       type: "text",
       required: true,
       placeholder: "********",
     },
     {
-      lable: "Confirm Password",
+      label: "Confirm Password",
       name: "confirmPassword",
       type: "text",
       required: true,
