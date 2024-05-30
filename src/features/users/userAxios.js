@@ -1,25 +1,35 @@
 import { apiProcessor } from "../../axios/axiosHelper";
 
 const userAPI = import.meta.env.VITE_APP_USERAPI;
-const signupAPI = userAPI + "/signup";
 const loginAPI = userAPI + "/login";
+const signupAPI = userAPI + "/signup";
 
-export const loginUser = async (loginObj) => {
+//login
+export const loginUser = (loginObj) => {
   const axiosObj = {
     method: "post",
     url: loginAPI,
     data: loginObj,
   };
-
-  return await apiProcessor(axiosObj);
+  return apiProcessor(axiosObj);
 };
 
-export const fetchUserInfo = async () => {
+//signuo
+export const signupUser = (userObj) => {
+  const axiosObj = {
+    method: "post",
+    url: signupAPI,
+    data: userObj,
+  };
+  return apiProcessor(axiosObj);
+};
+
+//fetch user
+export const fetchUserInfo = () => {
   const axiosObj = {
     method: "get",
     url: userAPI,
     isPrivate: true,
   };
-
-  return await apiProcessor(axiosObj);
+  return apiProcessor(axiosObj);
 };

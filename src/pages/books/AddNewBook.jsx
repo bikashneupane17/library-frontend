@@ -1,9 +1,10 @@
 import { Button, Form } from "react-bootstrap";
-import React, { useState } from "react";
 
 import { CustomForm } from "../../components/customForm/CustomForm";
 import { Link } from "react-router-dom";
 import { UserLayout } from "../../components/layout/UserLayout";
+import { postNewBook } from "../../features/books/bookAxios";
+import { toast } from "react-toastify";
 import { useForm } from "../../hooks/useForm";
 
 export const AddNewBook = () => {
@@ -14,12 +15,17 @@ export const AddNewBook = () => {
   //   setForm({ ...form, [name]: value });
   // };
 
-  // const handleOnSubmit = (e) => {
-  //   e.preventDefault();
-  // };
-
   //custom hook to replace above code
-  const { handleOnChange, handleOnSubmit } = useForm({});
+  const { form, handleOnChange } = useForm({});
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+
+    const book = await postNewBook(form);
+    const { status, message } = book;
+    toast[status](message);
+    console.log(book);
+  };
 
   const inputs = [
     {
@@ -61,10 +67,11 @@ export const AddNewBook = () => {
     {
       label: "Description",
       name: "description",
-      type: "text",
+      as: "textarea",
       maxLength: "5000",
       required: true,
       placeholder: "Book Summary....",
+      rows: 5,
     },
   ];
 
@@ -85,7 +92,9 @@ export const AddNewBook = () => {
           })}
 
           <div className="d-grid">
-            <Button variant="primary">Add Book</Button>
+            <Button variant="primary" type="submit">
+              Add Book
+            </Button>
           </div>
         </Form>
       </div>

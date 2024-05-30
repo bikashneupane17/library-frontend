@@ -3,12 +3,12 @@ import { useState } from "react";
 const initialState = {};
 
 const handleOnChange = ({ e, form, setForm }) => {
-  const { name, value } = e.target;
-  setForm({ ...form, [name]: value });
-};
+  let { name, value, checked } = e.target;
+  if (name === "status") {
+    value = checked ? "active" : "inactive";
+  }
 
-const handleOnSubmit = (e) => {
-  e.preventDefault();
+  setForm({ ...form, [name]: value });
 };
 
 export const useForm = () => {
@@ -16,7 +16,7 @@ export const useForm = () => {
 
   return {
     form,
+    setForm,
     handleOnChange: (e) => handleOnChange({ e, form, setForm }),
-    handleOnSubmit: (e) => handleOnSubmit(e),
   };
 };

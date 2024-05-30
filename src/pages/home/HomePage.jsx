@@ -1,8 +1,9 @@
-import React from "react";
-import { DefaultLayout } from "../../components/layout/DefaultLayout";
-import { CustomCarousel } from "../../components/carousel/CustomCarousel";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Col, Container, Form, Row } from "react-bootstrap";
+
 import { CustomCard } from "../../components/card/CustomCard";
+import { CustomCarousel } from "../../components/carousel/CustomCarousel";
+import { DefaultLayout } from "../../components/layout/DefaultLayout";
+import React from "react";
 
 export const HomePage = () => {
   return (

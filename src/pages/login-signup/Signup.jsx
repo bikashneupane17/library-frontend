@@ -2,55 +2,19 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 
 import { CustomForm } from "../../components/customForm/CustomForm";
 import { DefaultLayout } from "../../components/layout/DefaultLayout";
-import { signupUser } from "../../axios/axiosHelper";
+import { signupUser } from "../../features/users/userAxios";
 import { toast } from "react-toastify";
 import { useForm } from "../../hooks/useForm";
-import { useState } from "react";
 
 export const Signup = () => {
-  const { handleOnChange } = useForm();
-
-  const [error, setError] = useState("");
-
-  // const [form, setForm] = useState({});
-
-  // const handleOnChange = (e) => {
-  //   const { name, value } = e.target;
-
-  //   // setError("");
-
-  //   // if (name === "confirmPassword") {
-  //   //   form.password !== value && setError("Password must match");
-  //   //   form.password.length < 6 &&
-  //   //     setError("Password must be atleast 6 character");
-
-  //   //   !/[a-z]/.test(form.password) &&
-  //   //     setError("Password must have atleast 1 Lowercase");
-  //   //   !/[A-Z]/.test(form.password) &&
-  //   //     setError("Password must have atleast 1 Uppercase");
-  //   //   !/[0-9]/.test(form.password) &&
-  //   //     setError("Password must have atleast 1 Number");
-
-  //   //   !/[@#$%^&*()_+!}{":?><|]/.test(form.password) &&
-  //   //     setError("Password must have at least 1 special character");
-  //   // }
-
-  //   // if (name === "password" && form.confirmPassword) {
-  //   //   form.confirmPassword !== value
-  //   //     ? setError("Password do not match")
-  //   //     : setError("");
-  //   // }
-
-  //   setForm({ ...form, [name]: value });
-  // };
+  const { form, setForm, handleOnChange } = useForm();
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
 
     const { confirmPassword, ...rest } = form;
-    if (rest.password !== confirmPassword) {
+    if (rest.password !== confirmPassword)
       return toast("Password do not match");
-    }
 
     const responsePending = signupUser(rest);
     toast.promise(responsePending, {
@@ -122,18 +86,9 @@ export const Signup = () => {
                 })}
 
                 <div className="d-grid mt-3">
-                  <Button type="submit" disabled={error}>
-                    Signup
-                  </Button>
+                  <Button type="submit">Signup</Button>
                 </div>
               </Form>
-              {error && (
-                <div className="mt-3">
-                  <ul>
-                    <li className="text-danger fw-bold">{error}</li>
-                  </ul>
-                </div>
-              )}
             </div>
           </Col>
         </Row>

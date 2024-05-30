@@ -24,7 +24,10 @@ export const UserLayout = ({ children, pageTitle }) => {
             <UserSideBar />
           </Col>
           <Col>
-            <div className="p-2">{pageTitle}</div>
+            <div className="p-2">
+              {pageTitle}
+              <hr />
+            </div>
             <div className="main">{children}</div>
           </Col>
         </Row>

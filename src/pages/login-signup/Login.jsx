@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
 
   const emailRef = useRef("");
@@ -70,7 +69,7 @@ export const Login = () => {
       <Container>
         <Row>
           <Col className="mt-5 mb-5 d-flex justify-content-center align-items-center">
-            <div className="w-75 p-5 border rounded shadow-lg">
+            <div className="w-75 p-5 border rounded shadow-lg ">
               <h2>Login Now!</h2>
               <Form onSubmit={handleOnSubmit}>
                 {inputs.map((item, i) => {
